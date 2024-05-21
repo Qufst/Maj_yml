@@ -27,7 +27,7 @@ jobs:
           jupyter nbconvert --to script notebook.ipynb
 
       - name: Update dependancies in yml
-        run: update_dependancies.py
+        run: python update_dependancies.py
 
       - name: Installing dependancies with Micromamba
         uses: mamba-org/provision-with-micromamba@v14
