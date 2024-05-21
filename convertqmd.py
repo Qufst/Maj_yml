@@ -1,3 +1,4 @@
+#%%
 import json
 import re
 import os
@@ -49,3 +50,5 @@ def convert_all_qmd_in_directory(input_directory, output_directory):
 input_directory = '/'  # Remplacez par le chemin de votre répertoire contenant les fichiers .qmd
 output_directory = 'ipynb/'  # Remplacez par le chemin de votre répertoire de sortie pour les fichiers .ipynb
 convert_all_qmd_in_directory(input_directory, output_directory)
+
+# %%
