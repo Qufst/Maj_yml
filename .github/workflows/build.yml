@@ -25,7 +25,7 @@ jobs:
       - name: convert .ipynb to .py
         run: |
           for nb in $(find . -name "*.ipynb"); do
-            jupyter nbconvert --to script "$nb"
+            jupyter nbconvert --to script "$nb" --output "${nb%.ipynb}.py"
           done
 
       - name: Update dependancies in yml
