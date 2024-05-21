@@ -25,10 +25,11 @@ jobs:
         with:
           tinytex: true
 
-      - name: convert .qmd to .ipynb
-        run: quarto convert example.qmd
-      - name: convert .ipynb to .py
-        run: python convertipynb.py
+      - name: copied qmd text to py
+        run: |
+          for file in *.qmd; do
+            awk "/\`\`\`/{flag=1;next} /\`\`\`/{flag=0}flag" "$file" > "${file%.qmd}.py"
+          done
 
       - name: Update dependancies in yml
         run: python update_dependancies.py
