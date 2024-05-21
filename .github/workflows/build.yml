@@ -1,0 +1,49 @@
+name: build
+on:
+  schedule:
+    - cron: '0 0 * * 0' 
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+jobs:
+  usebinder:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checking out repository
+        uses: actions/checkout@v3
+
+      - name: Install Python dependencies
+        run: |
+          python3 -m pip install jupyter nbformat nbconvert ipykernel 
+
+      - name: convert .qmd to .ipynb
+        run: convertqmd.py
+      - name: convert .ipynb to .py
+        run: |
+          jupyter nbconvert --to script notebook.ipynb
+
+      - name: Update dependancies in yml
+        run: update_dependancies.py
+
+      - name: Installing dependancies with Micromamba
+        uses: mamba-org/provision-with-micromamba@v14
+        with:
+          cache-env: true
+
+      - name: Installing quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          tinytex: true
+      - name: Render and Publish with Quarto
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          quarto_file: index
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
