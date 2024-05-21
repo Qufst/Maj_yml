@@ -24,7 +24,9 @@ jobs:
         run: python convertqmd.py
       - name: convert .ipynb to .py
         run: |
-          for nb in $(find . -name "*.ipynb"); do jupyter nbconvert --to script "$nb" done
+          for nb in $(find . -name "*.ipynb"); do
+            jupyter nbconvert --to script "$nb"
+          done
 
       - name: Update dependancies in yml
         run: python update_dependancies.py
