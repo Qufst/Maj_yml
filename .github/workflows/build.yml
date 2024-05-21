@@ -20,6 +20,11 @@ jobs:
         run: |
           python3 -m pip install jupyter nbformat nbconvert ipykernel 
 
+      - name: Installing quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          tinytex: true
+
       - name: convert .qmd to .ipynb
         run: python convertqmd.py
       - name: convert .ipynb to .py
@@ -33,10 +38,6 @@ jobs:
         with:
           cache-env: true
 
-      - name: Installing quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          tinytex: true
       - name: Render and Publish with Quarto
         uses: quarto-dev/quarto-actions/publish@v2
         with:
