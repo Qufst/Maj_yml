@@ -21,7 +21,7 @@ jobs:
           python3 -m pip install jupyter nbformat nbconvert ipykernel 
 
       - name: convert .qmd to .ipynb
-        run: convertqmd.py
+        run: python convertqmd.py
       - name: convert .ipynb to .py
         run: |
           jupyter nbconvert --to script notebook.ipynb
