@@ -26,7 +26,7 @@ jobs:
           tinytex: true
 
       - name: convert .qmd to .ipynb
-        run: python convertqmd.py
+        run: quarto convert example.qmd
       - name: convert .ipynb to .py
         run: python convertipynb.py
 
