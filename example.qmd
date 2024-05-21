@@ -1,3 +1,9 @@
+---
+title: "matplotlib demo"
+format:
+  html:
+    code-fold: true
+---
 ```{python}
 import matplotlib.pyplot as plt
 import numpy as np
