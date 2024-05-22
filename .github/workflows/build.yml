@@ -18,7 +18,7 @@ jobs:
 
       - name: Install Python dependencies
         run: |
-          python3 -m pip install jupyter nbformat nbconvert ipykernel 
+          python3 -m pip install jupyter nbformat nbconvert ipykernel tqdm
 
       - name: Installing quarto
         uses: quarto-dev/quarto-actions/setup@v2
