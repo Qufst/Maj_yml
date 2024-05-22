@@ -4,6 +4,7 @@ import re
 import os
 from nbformat import v4 as nbf
 
+
 def read_qmd_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
@@ -14,7 +15,7 @@ def parse_qmd_content(content):
     code_blocks = re.findall(r'```{python}(.+?)```', content, re.DOTALL)
     text_blocks = re.split(r'```{python}.*?```', content, re.DOTALL)
     
-    for i, text in enumerate(text_blocks):
+    for i, text in (text_blocks):
         if text.strip():
             cells.append(nbf.new_markdown_cell(text.strip()))
         if i < len(code_blocks):
